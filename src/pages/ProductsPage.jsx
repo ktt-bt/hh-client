@@ -40,6 +40,7 @@ import {
 import { Plus, Edit, Trash2 } from "lucide-react";
 
 const ProductsPage = ({ authToken, currentUser }) => {
+    console.log(currentUser);
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -381,7 +382,7 @@ const ProductsPage = ({ authToken, currentUser }) => {
                                     className="w-full dark:bg-gray-700 dark:text-gray-50" required/>
                             </div>
 
-                            { currentUser.role !== "admin" || (<div className="flex items-center space-x-2 mt-4">
+                            { currentUser && currentUser.role === "admin" &&  (<div className="flex items-center space-x-2 mt-4">
                                 <Checkbox id="is_active" checked={editingProduct.is_active}
                                     onCheckedChange={(checked) =>
                                         handleInputChange({
@@ -418,7 +419,7 @@ const ProductsPage = ({ authToken, currentUser }) => {
                         <TableHead className="text-gray-700 dark:text-gray-200">Price/Unit</TableHead>
                         <TableHead className="text-gray-700 dark:text-gray-200">Current Stock</TableHead>
                         <TableHead className="text-gray-700 dark:text-gray-200">Number of Boxes</TableHead>
-                        { currentUser.role !== "admin" || 
+                        { currentUser && currentUser.role === "admin" && 
                             (<TableHead className="text-gray-700 dark:text-gray-200">Active</TableHead>)}
                         <TableHead className="text-gray-700 dark:text-gray-200">Actions</TableHead>
                     </TableRow>
@@ -448,7 +449,7 @@ const ProductsPage = ({ authToken, currentUser }) => {
                                     product.unit_of_measure,
                                 )}
                             </TableCell>
-                            { currentUser.role !== "admin" || (<TableCell className="text-gray-700 dark:text-gray-300">
+                            { currentUser && currentUser.role === "admin" &&  (<TableCell className="text-gray-700 dark:text-gray-300">
                                 {product.is_active === 1 ? "Yes" : "No"}
                             </TableCell>)}
                             <TableCell>

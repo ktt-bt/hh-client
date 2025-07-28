@@ -16,7 +16,6 @@ import ProductsPage  from "@/pages/ProductsPage";
 import ReportsPage  from "@/pages/ReportsPage";
 import UserManagementPage  from "@/pages/UserManagementPage";
 
-
 import { Button } from "./components/ui/button";
 import {
     LogOut,

@@ -173,7 +173,7 @@ const CategoriesPage = ({ authToken, currentUser }) => {
                                 <Label htmlFor="description" className="text-gray-700 dark:text-gray-300">Description</Label>
                                 <Textarea id="description" value={editingCategory.description} onChange={handleInputChange} className="w-full dark:bg-gray-700 dark:text-gray-50"/>
                             </div>
-                            { currentUser.role !== "admin" || (<div className="flex items-center space-x-2 mt-4">
+                            { currentUser && currentUser.role === "admin" && (<div className="flex items-center space-x-2 mt-4">
                                 <Checkbox id="is_active" checked={editingCategory.is_active}
                                     onCheckedChange={(checked) => handleInputChange({target: { id: "is_active", type: "checkbox", checked }})}/>
                                 <Label htmlFor="is_active" className="text-gray-700 dark:text-gray-300">Active</Label>
@@ -192,7 +192,7 @@ const CategoriesPage = ({ authToken, currentUser }) => {
                     <TableRow>
                         <TableHead className="text-gray-700 dark:text-gray-200">Category Name</TableHead>
                         <TableHead className="text-gray-700 dark:text-gray-200">Description</TableHead>
-                        {currentUser.role !== "admin"  || (<TableHead className="text-gray-700 dark:text-gray-200">Active</TableHead>)}
+                        { currentUser && currentUser.role === "admin" &&  (<TableHead className="text-gray-700 dark:text-gray-200">Active</TableHead>)}
                         <TableHead className="text-gray-700 dark:text-gray-200">Actions</TableHead>
                     </TableRow>
                 </TableHeader>
@@ -201,7 +201,7 @@ const CategoriesPage = ({ authToken, currentUser }) => {
                         <TableRow key={category.category_id} className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
                             <TableCell className="font-medium text-gray-900 dark:text-gray-50">{category.category_name}</TableCell>
                             <TableCell className="text-gray-700 dark:text-gray-300">{category.description}</TableCell>
-                            { currentUser.role !== "admin"  || (<TableCell className="text-gray-700 dark:text-gray-300">{category.is_active === 1 ? "Yes" : "No"}</TableCell>)}
+                            { currentUser && currentUser.role === "admin" &&  (<TableCell className="text-gray-700 dark:text-gray-300">{category.is_active === 1 ? "Yes" : "No"}</TableCell>)}
                             <TableCell>
                                 <div className="flex space-x-2">
                                     <Button variant="outline" size="sm" onClick={() => handleEditClick(category)} className="text-blue-500 border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900">
