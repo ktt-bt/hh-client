@@ -1,5 +1,6 @@
 const API_BASE_URL = "https://server-patient-meadow-2191.fly.dev"; // Ensure this matches your backend port
 // const API_BASE_URL = process.env.VITE_APP_API_URL;
+// const API_BASE_URL = "http://localhost:3000";
 
 /**
  * Formats a number with comma separation for the 'vi-VN' locale.
@@ -76,7 +77,6 @@ export const formatNumberOfBoxes = (quantity, categoryID, unitOfMeasure, unitBas
     const isSingular = Math.abs(parseFloat(quantity)) === 1;
     const unit = isSingular ? unitBaseSingular : getPluralForm(unitBaseSingular);
     // console.log(formattedQuantity, typeof formattedQuantity, );
-
 
     if (Boolean(quantity) && allowedCategoryIds.includes(categoryID) && unitOfMeasure === requiredUnit) {
         return `${formattedQuantity} ${unit}`;  

@@ -43,6 +43,8 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
+import ProductPricesTable from './ProductPricesTable';
+
 const OrdersPage = ({ authToken }) => {
     const [orders, setOrders] = useState([]);
     const [products, setProducts] = useState([]);
@@ -476,13 +478,16 @@ const OrdersPage = ({ authToken }) => {
                             <Plus className="mr-2 h-4 w-4" /> Create New Order
                         </Button>
                     </DialogTrigger>
-                    <DialogContent className="sm:max-w-3xl bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6">
+                    {/*<DialogContent className="sm:max-w-3xl bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6">*/}
+                    <DialogContent className="sm:max-w-3xl bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 overflow-y-auto max-h-[90vh]">
                         <DialogHeader>
                             <DialogTitle className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
                                 Create New Order
                             </DialogTitle>
                         </DialogHeader>
-                        <form onSubmit={handleCreateOrder} className="flex flex-col gap-4 py-4">
+                        <ProductPricesTable authToken={authToken} />
+                        <form onSubmit={handleCreateOrder} className="flex flex-col gap-4 py-4" id="this-form">
+                        {/*<form onSubmit={handleCreateOrder} className="flex flex-col gap-4 py-4 overflow-y-auto max-h-[70vh]" id="this-form">*/}
                             {/* Customer Search Section for New Order Form */}
                             <div className="flex flex-col gap-2 relative">
                                 <Label htmlFor="customer_search" className="text-gray-700 dark:text-gray-300">
